@@ -1,0 +1,19 @@
+<form name="product-form">
+
+        <label for="name">Name<sup>*</sup></label>
+              <input type="text" name="name" id="name" class="form-control" ng-model="product.name"
+                     placeholder="enter product name" required>
+
+                     <label for="type">Type<sup>*</sup></label>
+                     <input type="text" name="type" id="type" class="form-control" ng-model="product.type"
+                            placeholder="enter product type" required>
+
+                    <label for="type">Price(INR)<sup>*</sup></label>
+                     <input type="text" name="price" id="price" class="form-control" ng-model="product.price"
+                            placeholder="enter product price" required>
+    
+                            <button type="submit" ng-click="addProduct()">
+                                Add Product
+                              </button>
+    
+    </form>

@@ -1,0 +1,46 @@
+<div>
+    <a href="#/add-product">Add Product</a>
+</div>
+
+
+
+<div>
+    <p>List of Products</p>
+    <div>
+            <button ng-click="deleteProducts()">Delete Products</button>
+        </div>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>type</th>
+                <th>Price(INR)</th>
+                <th>Select to delete</th>
+            </tr>
+        </thead>
+        <tbody ng-if="products.length > 0">
+            <tr ng-repeat="product in products">
+                <td>
+                    {{product._id}}
+                </td>
+                <td>
+                    {{product.name}}
+                </td>
+                <td>
+                    {{product.type}}
+                </td>
+                <td>
+                    {{product.price}}
+                </td>
+                <td>
+                    <input type="checkbox" ng-model="product.isChecked" ng-change="checkboxChange(product)" />
+                </td>
+                <td>
+                    <a href="{{'#/view-product/' + product._id}}">view</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

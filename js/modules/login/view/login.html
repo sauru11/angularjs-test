@@ -1,0 +1,17 @@
+<form name="login-form">
+
+    <label for="username">Email<sup>*</sup></label>
+          <input type="email" name="username" id="username" class="form-control" ng-model="email"
+                 placeholder="your@domain.com" required>
+
+    <label for="password">Password<sup>*</sup></label>
+        <input type="password" name="password" id="password" placeholder="password" class="form-control"
+                        ng-model="password" required/>
+
+                        <button type="submit" ng-click="login()">
+                            Log in »
+                          </button>
+
+</form>
+
+<p ng-if="showError.length">{{showError}}</p>
