@@ -1,5 +1,6 @@
 
-'use.strict'
+(function () {
+  'use strict';
 
 angular.module('com.module.products', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
@@ -20,3 +21,5 @@ angular.module('com.module.products', ['ngRoute'])
     })
 
   }])
+
+})();

@@ -1,25 +1,28 @@
-'use.strict'
+(function () {
+    'use strict';
 
-angular.module('my-app')
-.controller('NavbarCtrl', NavbarCtrl);
+    angular.module('my-app')
+        .controller('NavbarCtrl', NavbarCtrl);
 
-NavbarCtrl.$inject = ['$scope', '$rootScope', '$location', '$cookieStore', 'DbServices']
+    NavbarCtrl.$inject = ['$scope', '$rootScope', '$location', '$cookieStore', 'DbServices']
 
-function NavbarCtrl ($scope, $rootScope, $location, $cookieStore, DbServices){
-    
-    $scope.layout = {
-        navbarUrl: 'modules/core/view/navbar.html',
-    };
+    function NavbarCtrl($scope, $rootScope, $location, $cookieStore, DbServices) {
 
-    DbServices.auth.isLoggedIn = $cookieStore.get('sl_globals') && $cookieStore.get('sl_globals').loggedIn
+        $scope.layout = {
+            navbarUrl: 'modules/core/view/navbar.html',
+        };
 
-    $scope.auth = DbServices.auth;
+        DbServices.auth.isLoggedIn = $cookieStore.get('sl_globals') && $cookieStore.get('sl_globals').loggedIn
 
-    $scope.logout = function() {
-        $rootScope.globals = {};
-        $cookieStore.remove('sl_globals');
-        DbServices.auth.isLoggedIn = false;
-        $location.path('/login');
+        $scope.auth = DbServices.auth;
+
+        $scope.logout = function () {
+            $rootScope.globals = {};
+            $cookieStore.remove('sl_globals');
+            DbServices.auth.isLoggedIn = false;
+            $location.path('/login');
+        }
+
     }
 
-}
+})();

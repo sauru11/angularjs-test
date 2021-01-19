@@ -1,4 +1,5 @@
-'use.strict'
+(function () {
+    'use strict';
 
 angular.module("com.module.login")
 .controller('LoginCtrl',  LoginCtrl )
@@ -30,4 +31,6 @@ function LoginCtrl($scope, $rootScope, $location, $cookieStore, DbServices) {
 
     }
 
-};
+}
+
+})();
