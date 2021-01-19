@@ -1,13 +1,10 @@
 <div>
     <a href="#/add-product">Add Product</a>
 </div>
-
-
-
 <div>
     <p>List of Products</p>
     <div>
-            <button ng-click="deleteProducts()">Delete Products</button>
+            <button ng-if="products.length > 0" ng-click="deleteProducts()">Delete Products</button>
         </div>
     <table>
         <thead>
@@ -42,5 +39,4 @@
             </tr>
         </tbody>
     </table>
-
 </div>

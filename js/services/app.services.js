@@ -1,41 +1,31 @@
-
 (function () {
     'use strict';
-
-
     angular.module('my-app')
         .factory('DbServices', function DbServices() {
-
             var db = new PouchDB('products');
             var auth = {
                 isLoggedIn: false
             };
-
-            function addNewProduct(product, callback) {
-                db.put(product, function (err, doc) {
-                    return callback(err, doc);
+            function convertToPromise(cbFun, args){
+                return new Promise((resolve, reject) => {
+                    cbFun(args, function (err, doc) {
+                        if(err) reject(err);
+                        resolve(doc);
+                    });
                 });
             }
-
-            function bulkDelete(productArr, callback) {
-                db.bulkDocs(productArr, function (err, doc) {
-                    return callback(err, doc);
-                });
+            function addNewProduct(product) {
+                return convertToPromise(db.put,product);
             }
-
+            function bulkDelete(productArr) {
+                return convertToPromise(db.bulkDocs,productArr);
+            }
             function getProducts(callback) {
-                db.allDocs({ include_docs: true, descending: true }, function (err, doc) {
-                    return callback(err, doc);
-                })
+                return convertToPromise(db.allDocs,{ include_docs: true, descending: true });
             }
-
             function viewProduct(id, callback) {
-                console.log(id);
-                db.get(id, function (err, doc) {
-                    return callback(err, doc);
-                })
+                return convertToPromise(db.get,id);
             }
-
             var services = {
                 addNewProduct: addNewProduct,
                 getProducts: getProducts,
@@ -43,9 +33,6 @@
                 viewProduct: viewProduct,
                 auth: auth
             };
-
             return services;
-
         })
-
 })();
